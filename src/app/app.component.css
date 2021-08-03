@@ -1,0 +1,289 @@
+.backgrounds{
+  background-image: url('https://bestanimations.com/media/rain/512938024city-view-rain-falling-gif.gif');
+  background-size: 100%;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+
+svg {
+  fill: #dadada !important;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+.wrapper {
+  min-height: 800px;
+  max-height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-content {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  color: #dadada;
+  position: relative;
+  width: 900px;
+  margin: auto;
+  padding-top: 40px;
+}
+
+.search input {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid transparent;
+  font-size: 13px;
+  border-radius: 10px 0 0 10px;
+  padding: 5px 0 5px 10px;
+  color: #ffffff;
+  width: 300px;
+}
+
+.search input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #dadada;
+  opacity: 1; /* Firefox */
+}
+
+.search input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #dadada;
+}
+
+.search input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #dadada;
+}
+
+.search button {
+  border: 1px solid transparent;
+  font-size: 13px;
+  border-radius: 0 10px 10px 0;
+  padding: 5px 10px 5px 8px;
+  color: #444444;
+}
+
+.location h2 {
+  margin: 20px 0;
+  font-weight: 400;
+  font-size: 30px;
+}
+.current-weather .details li {
+  width: 150px;
+}
+
+.current-weather .weather span.icon {
+  float: left;
+}
+
+.current-weather .weather span.icon img {
+  width: 150px;
+}
+
+.current-weather .weather span.temperature {
+  float: left;
+  font-size: 100px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin-left: 20px;
+  color: #ffffff;
+}
+
+.current-weather .weather .description {
+  float: left;
+  margin-left: 30px;
+}
+
+.current-weather .weather .description h2 {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.current-weather .weather .description p {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 10px 0 0 0;
+}
+
+.current-weather .details {
+  clear: both;
+}
+
+.current-weather .details span.icon {
+  float: left;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.current-weather .details span.information {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.current-weather .details span.information i {
+  font-weight: 300;
+  color: #dadada;
+  font-size: 12px;
+  font-style: normal;
+  display: block;
+  text-transform: uppercase;
+}
+
+.daily-forecast {
+  clear: both;
+  margin: 30px 0 0 0;
+}
+
+.daily-forecast h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.daily-item {
+  width: 135px;
+  background-color: rgb(172, 172, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px 0;
+  margin-right: 10px;
+}
+
+.daily-item h3 {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+
+.daily-item span.icon img {
+  width: 30px;
+  left: 10px;
+  position: relative;
+}
+
+.daily-item span.icon img.droplet {
+  width: unset;
+  left: unset;
+}
+
+.daily-item span.icon i {
+  float: right;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  position: relative;
+  margin: 3px 21px 0 0;
+}
+
+.daily-item span.temp-high {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.daily-item span.temp-low {
+  display: block;
+  font-size: 24px;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.temperature-table {
+  float: left;
+  margin-top: 40px;
+}
+
+.temperature-table table {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.temperature-table table thead {
+  color: #dadada;
+  font-weight: 300;
+}
+
+.temperature-table table tr td {
+  width: 95px;
+}
+
+.temperature-table table tr td.subhead {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 300;
+  color: #dadada;
+}
+
+.astro-details {
+  float: left;
+  margin-top: 40px;
+}
+
+.astro-details div {
+  float: left;
+  text-align: center;
+  font-weight: 400;
+  width: 100px;
+  font-size: 12px;
+}
+
+.astro-details div.daylight {
+  width: 200px;
+}
+
+.astro-details div.daylight h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin: -20px 0 4px 0;
+}
+
+.astro-details svg {
+  width: 35px !important;
+  height: 35px !important;
+}
+
+.astro-details span {
+  display: block;
+}
+
+.instructions {
+  margin: 150px 0;
+  font-weight: 300;
+}
