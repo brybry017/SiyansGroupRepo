@@ -1,13 +1,13 @@
 <div class="daily-forecast">
-  <h2>Forecast</h2>
+  <h2 style="color: red; font-size: 20px; font-weight: bold;">Forecast</h2>
   <div class="horizontal">
     <ul *ngFor="let fore of datFor let i=index;" routerLink="forecast/{{dates[i]}}">
         <li *ngIf="i>=1">
           <div class="daily-item" (click)="hu(i)">
-            <h3>{{dates[i]}}</h3>
+            <h3><b>{{dates[i]}}</b></h3>
             <span class="icon">
-              <img src="../assets/img/weather-icons/013-storm-2.svg" />
-              <i><img src="../assets/water_drop_white_8x8.svg" class="droplet" />39%</i>
+              <img src="../assets/013-storm-2.svg" />
+              <i style="color: white;"><img src="../assets/water_drop_white_8x8.svg" class="droplet" />39%</i>
             </span>
             <span class="temp-high">{{fore.temp.max|number:'1.0-0'}}&deg;</span>
             <span class="temp-low">{{fore.temp.min|number:'1.0-0'}}&deg;</span>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { APICALLService } from './service/apicall.service';
 import { current,forecast,tableAndDay } from './Interface';
 import { ActivatedRoute } from '@angular/router';
@@ -54,7 +54,8 @@ export class AppComponent implements OnInit{
     }
   }
 
-  constructor(private service: APICALLService, private route: ActivatedRoute){}
+  image:string = '';
+  constructor(private service: APICALLService, private route: ActivatedRoute,private renderer: Renderer2, private elem: ElementRef){}
 
   ngOnInit(){
     if(!navigator.geolocation){
@@ -76,13 +77,13 @@ export class AppComponent implements OnInit{
     console.log(this.city1);
     this.Weather(lat,long);
     })
-
   }
   Weather(lat:any,long:any){
     this.service.Weather(lat,long).subscribe((res)=>{
       this.WeatherData = res;
 
       console.log(this.WeatherData);
+      //Current
       this.datCurrent.temperatur = this.WeatherData.current.temp;
       this.datCurrent.feel_likes = this.WeatherData.current.feels_like;
       this.datCurrent.wind = this.WeatherData.current.wind_speed;
@@ -91,7 +92,11 @@ export class AppComponent implements OnInit{
       this.datCurrent.pressure = this.WeatherData.current.pressure;
       this.datCurrent.dewpoint = this.WeatherData.current.dew_point;
       this.datCurrent.icon = this.WeatherData.current.weather[0].icon;
-      this.datCurrent.description = this.WeatherData.current.weather[0].description;
+
+      let upp:string = this.WeatherData.current.weather[0].description;
+      console.log(upp.charAt(0).toUpperCase() + upp.slice(1));
+
+      this.datCurrent.description = upp.charAt(0).toUpperCase() + upp.slice(1);
       this.datCurrent.low = this.WeatherData.daily[0].temp.min;
       this.service.Currentt(this.datCurrent);
       // const dew = Math.log(this.WeatherData.main.humidity/100)
@@ -102,17 +107,20 @@ export class AppComponent implements OnInit{
       // this.datCurrent.dewpoint = dews;
       // this.service.Currentt(this.datCurrent);
       console.log(this.datCurrent);
+      //----END OF CURRENT
 
+      //Table
       this.table.temp.day = this.WeatherData.daily[0].temp.day;
       this.table.temp.eve = this.WeatherData.daily[0].temp.eve;
       this.table.temp.morn = this.WeatherData.daily[0].temp.morn;
       this.table.temp.night = this.WeatherData.daily[0].temp.night;
 
+      // console.log("DI NAKA TIMES:",this.WeatherData.daily[0].sunrise)
+      // console.log("NAKA TIMES:",new Date(this.WeatherData.daily[0].sunrise*1000));
 
       let sunrise:any = new Date(this.WeatherData.daily[0].sunrise*1000);
       let sunset:any = new Date(this.WeatherData.daily[0].sunset*1000);
-
-      let sunsT:any = sunset.getHours()+':'+ sunset.getMinutes();
+      let sunsT:any = (sunset.getHours()-12)+':'+ sunset.getMinutes();
       let sunsR:any = sunrise.getHours()+':'+sunrise.getMinutes();
 
       this.table.feel.day = this.WeatherData.daily[0].feels_like.day;
@@ -128,12 +136,31 @@ export class AppComponent implements OnInit{
       let difM = Math.floor((dif/(1000*60)%60));
       let gapps = difH+' HR '+':'+difM+' M';
       this.table.gap.gapp = gapps;
+      this.service.Tablee(this.table);
+      //------ENF OF TABLE
 
 
+      //Forecast
       this.datForeCast = this.WeatherData.daily;
       this.service.Forecastt(this.datForeCast);
+      //-----END of FORECAST
+      if(upp.includes("clouds") || upp.includes("sky")){
+        this.image = 'url(../assets/ezgif-7-0de4b57f22dc.gif)';
+        this.backgroundChange(this.image);
+      }else if(upp.includes("rain")){
+        this.image = 'url(https://bestanimations.com/media/rain/512938024city-view-rain-falling-gif.gif)';
+        this.backgroundChange(this.image);
+      }else if(upp.includes("snow")){
+        this.image = 'url(https://i.gifer.com/7YWG.gif)';
+        this.backgroundChange(this.image);
+      }else{
 
-      this.service.Tablee(this.table);
+      }
     })
+  }
+
+  backgroundChange(imagee:string){
+    let elements = this.elem.nativeElement.querySelector('.backgrounds');
+    this.renderer.setStyle(elements,'background-image',imagee);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APICALLService } from 'src/app/service/apicall.service';
 import { current,tableAndDay } from 'src/app/Interface';
@@ -8,6 +8,9 @@ import { current,tableAndDay } from 'src/app/Interface';
   styleUrls: ['./forecast.component.css']
 })
 export class ForecastComponent implements OnInit {
+
+  @Output() image = new EventEmitter<string>();
+
   datFor: any;
   rev: any;
   day: any;
@@ -49,7 +52,7 @@ export class ForecastComponent implements OnInit {
   }
 
 
-  constructor(private service: APICALLService, private route: ActivatedRoute) { }
+  constructor(private service: APICALLService, private route: ActivatedRoute,private renderer: Renderer2, private elem: ElementRef) { }
 
   ngOnInit(): void {
     this.service.intForecast.subscribe((res)=>{
@@ -71,17 +74,21 @@ export class ForecastComponent implements OnInit {
     this.datCurrent.feel_likes = (this.datFor[id].feels_like.day
       +this.datFor[id].feels_like.night+this.datFor[id].feels_like.eve+this.datFor[id].feels_like.morn)/4
     console.log(this.datCurrent.feel_likes);
+
+
+    let upp:string = this.datFor[id].weather[0].description;
+    console.log(upp.charAt(0).toUpperCase() + upp.slice(1));
+
     this.datCurrent.wind = this.datFor[id].wind_speed;
     this.datCurrent.visibility = 0;
     this.datCurrent.humidity = this.datFor[id].humidity;
     this.datCurrent.pressure = this.datFor[id].pressure;
     this.datCurrent.dewpoint = this.datFor[id].dew_point;
-    this.datCurrent.description = this.datFor[id].weather[0].description;
+    this.datCurrent.description = upp.charAt(0).toUpperCase() + upp.slice(1);
     this.datCurrent.icon = this.datFor[id].weather[0].icon;
     this.datCurrent.low = this.datFor[id].temp.min;
     this.service.Currentt(this.datCurrent);
     console.log(this.dates[id]);
-    console.log("TANGGGA",this.datFor[id]);
 
     this.table.temp.day = this.datFor[id].temp.day;
     this.table.temp.eve = this.datFor[id].temp.eve;
@@ -109,10 +116,17 @@ export class ForecastComponent implements OnInit {
     let gapps = difH+' HR '+':'+difM+' M';
     this.table.gap.gapp = gapps;
 
-
     console.log(this.table);
     this.service.Tablee(this.table);
 
+    if(upp.includes("clouds") || upp.includes("sky")){
+      this.image.emit('url(../../assets/ezgif-7-0de4b57f22dc.gif)');
+    }else if(upp.includes("rain")){
+      this.image.emit('url(https://bestanimations.com/media/rain/512938024city-view-rain-falling-gif.gif)')
+    }else if(upp.includes("snow")){
+      this.image.emit('url(https://i.gifer.com/7YWG.gif)')
+    }else{
 
+    }
   }
 }

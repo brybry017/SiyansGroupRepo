@@ -5,7 +5,7 @@ import { CurrentComponent } from './components/current/current.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'forecast/:day', component: CurrentComponent},
+  { path: 'forecast/:day', component: AppComponent},
 ];
 @NgModule({
   declarations: [],
