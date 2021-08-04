@@ -53,8 +53,8 @@ export class AppComponent implements OnInit{
       gapp: 0,
     }
   }
-
   image:string = '';
+  isCompleted = true;
   constructor(private service: APICALLService, private route: ActivatedRoute,private renderer: Renderer2, private elem: ElementRef){}
 
   ngOnInit(){
@@ -162,5 +162,8 @@ export class AppComponent implements OnInit{
   backgroundChange(imagee:string){
     let elements = this.elem.nativeElement.querySelector('.backgrounds');
     this.renderer.setStyle(elements,'background-image',imagee);
+
+    this.isCompleted = false;
+    console.log(this.isCompleted);
   }
 }

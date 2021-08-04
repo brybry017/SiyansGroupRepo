@@ -1,9 +1,11 @@
 <div class="backgrounds">
   <div class="container h-100">
     <app-search [City]="city1"></app-search>
+      <mat-progress-bar
+      [mode]="'indeterminate'" color="accent" *ngIf="isCompleted">
+      </mat-progress-bar>
     <app-current></app-current>
-    <app-forecast (image)="backgroundChange($event)"></app-forecast>
+    <app-forecast (prog)="isCompleted" (image)="backgroundChange($event)"></app-forecast>
     <app-table-and-daylight></app-table-and-daylight>
   </div>
 </div>
-

@@ -10,6 +10,7 @@ import { current,tableAndDay } from 'src/app/Interface';
 export class ForecastComponent implements OnInit {
 
   @Output() image = new EventEmitter<string>();
+  @Output() prog = new EventEmitter<boolean>();
 
   datFor: any;
   rev: any;
@@ -99,7 +100,7 @@ export class ForecastComponent implements OnInit {
     let sunrise:any = new Date(this.datFor[id].sunrise*1000);
     let sunset:any = new Date(this.datFor[id].sunset*1000);
 
-    let sunsT:any = sunset.getHours()+':'+ sunset.getMinutes();
+    let sunsT:any = (sunset.getHours()-12)+':'+ sunset.getMinutes();
     let sunsR:any = sunrise.getHours()+':'+sunrise.getMinutes();
 
     this.table.feel.day = this.datFor[id].feels_like.day;
@@ -118,6 +119,8 @@ export class ForecastComponent implements OnInit {
 
     console.log(this.table);
     this.service.Tablee(this.table);
+
+    this.prog.emit(true);
 
     if(upp.includes("clouds") || upp.includes("sky")){
       this.image.emit('url(../../assets/ezgif-7-0de4b57f22dc.gif)');

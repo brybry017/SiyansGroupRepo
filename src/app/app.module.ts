@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http'
 import { AppComponent } from './app.component';
@@ -7,6 +7,8 @@ import { ForecastComponent } from './components/forecast/forecast.component';
 import { CurrentComponent } from './components/current/current.component';
 import { TableAndDaylightComponent } from './components/table-and-daylight/table-and-daylight.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,11 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSliderModule,
+    MatProgressBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
