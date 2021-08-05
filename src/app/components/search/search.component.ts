@@ -10,6 +10,7 @@ import { current, forecast, tableAndDay } from 'src/app/Interface';
 export class SearchComponent implements OnInit {
 
   @Input() City='';
+
   sertzMap: any;
   WeatherData: any;
   datCurrent: current ={
@@ -142,7 +143,15 @@ export class SearchComponent implements OnInit {
       this.table.gap.gapp = gapps;
       this.service.Tablee(this.table);
 
+      if(upp.includes("clouds") || upp.includes("sky")){
+        this.image.emit('url(../../assets/ezgif-7-0de4b57f22dc.gif)');
+      }else if(upp.includes("rain")){
+       this.image.emit('url(https://bestanimations.com/media/rain/512938024city-view-rain-falling-gif.gif)')
+      }else if(upp.includes("snow")){
+        this.image.emit('url(https://i.gifer.com/7YWG.gif)')
+      }else{
 
+      }
     })
   }
 }
