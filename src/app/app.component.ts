@@ -71,7 +71,8 @@ export class AppComponent implements OnInit{
     })
   }
   MapBox(long:any,lat:any){
-    this.service.Mapbox(long,lat).subscribe((res)=>{
+    const coords = [long,lat];
+    this.service.Mapbox(coords).subscribe((res)=>{
     this.city = res;
     this.city1 = this.city.features[0].context[2].text;
     console.log(this.city1);

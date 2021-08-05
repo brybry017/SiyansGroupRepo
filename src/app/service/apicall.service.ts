@@ -24,10 +24,13 @@ export class APICALLService {
 
   constructor(private http: HttpClient) { }
 
-
-  Mapbox(long:number,lat:number){
-    return this.http.get(`${this.MapboxURL}${long},${lat}.json?access_token=${this.MapboxKey}`);
+  Mapbox(location: string | number[]){
+    return this.http.get(`${this.MapboxURL}${location}.json?access_token=${this.MapboxKey}`);
   }
+
+  // Mapbox(long:number,lat:number){
+  //   return this.http.get(`${this.MapboxURL}${long},${lat}.json?access_token=${this.MapboxKey}`);
+  // }
 
   Weather(lat1:number,long1:number){
     // const WeatherURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat1+'&lon='+long1+'&exclude=hourly,minutely';
@@ -47,7 +50,7 @@ export class APICALLService {
   }
   //-------------------------
 
-  MapBoxSertz(City:string){
-    return this.http.get(`${this.MapboxURL}${City}.json?access_token=${this.MapboxKey}`)
-  }
+  // MapBoxSertz(City:string){
+  //   return this.http.get(`${this.MapboxURL}${City}.json?access_token=${this.MapboxKey}`)
+  // }
 }
