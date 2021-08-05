@@ -54,16 +54,19 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
   search(sertz:HTMLInputElement){
-    console.log(sertz.value);
-    this.service.Mapbox(sertz.value).subscribe((res)=>{
-      this.City = sertz.value;
-      this.sertzMap = res;
-      sertz.value = '';
-      this.City = this.sertzMap.features[0].place_name;
-      console.log(this.sertzMap.features[0].center)
-      this.MapBoxSertz(this.sertzMap.features[0].center);
-
-    })
+    if(sertz.value == ''){
+      alert("Input Location")
+    }else{
+      console.log(sertz.value);
+      this.service.Mapbox(sertz.value).subscribe((res)=>{
+        this.City = sertz.value;
+        this.sertzMap = res;
+        sertz.value = '';
+        this.City = this.sertzMap.features[0].place_name;
+        console.log(this.sertzMap.features[0].center)
+        this.MapBoxSertz(this.sertzMap.features[0].center);
+      })
+    }
   }
 
   MapBoxSertz(coords: any[]){
